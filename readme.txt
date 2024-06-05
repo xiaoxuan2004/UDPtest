@@ -14,7 +14,7 @@ UDP客户端-服务器模拟
 - 在服务器的终端或命令提示符中执行以下命令：
     python udpserver.py
 (2) 服务器代码说明：
-- `Server.__init__(self, server_ip, server_port, drop_pct=0.6, time_out=0.1,retrans_times=2)`：初始化服务器，绑定 IP 和端口，设置丢包率和超时时间。
+- `Server.__init__(self, server_ip, server_port, drop_pct=0.6, time_out=0.1)`：初始化服务器，绑定 IP 和端口，设置丢包率和超时时间。
 - `Server.connection(self, client_addr)`：处理客户端的连接请求，发送 `SYN_ACK` 消息。
 - `Server.disconnection(self, client_addr)`：处理客户端的断开请求，发送 `FIN_ACK` 消息。
 - `Server.response(self, client_addr, message)`：处理并响应客户端的消息，模拟丢包和延迟。
@@ -31,7 +31,7 @@ UDP客户端-服务器模拟
     python udpclient.py 127.0.0.1 12345
 
 (2) 客户端代码说明：
-- `Client.__init__(self, server_ip, server_port, timeout=0.1, packet_num=12,retras_times=2)`：初始化客户端，设置服务器 IP 和端口，超时时间和数据包数量。
+- `Client.__init__(self, server_ip, server_port, timeout=0.1, packet_num=12,retras_times=2)`：初始化客户端，设置服务器 IP 和端口，超时时间，数据包数目和最多重传次数。
 - `Client.connection(self)`：处理与服务器的连接过程，发送 `SYN` 消息并等待 `SYN_ACK` 响应。
 - `Client.disconnection(self)`：处理与服务器的断开过程，发送 `FIN` 消息并等待 `FIN_ACK` 响应。
 - `Client.run(self)`：运行客户端，发送数据包，处理测量 RTT 并计算统计数据并汇总输出。
@@ -43,6 +43,7 @@ UDP客户端-服务器模拟
 - `time_out`：服务器处理延迟时间，默认值为 0.1 秒。
 - `timeout`：客户端等待服务器响应的超时时间，默认值为 0.1 秒。
 - `packet_num`：客户端发送的数据包数量，默认值为 12。
+- `retras_times`：客户端最多重传的次数，默认值为2。
 
 # 6. 注意事项
 
